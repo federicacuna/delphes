@@ -51,6 +51,7 @@ public:
   ~SolGeom();
 
   void Read(const char *data);
+  void ReadDCH(TString datageometry );
 
   Double_t B()                     { return fB; }
   Int_t    Nl()                    { return fNlay; }
