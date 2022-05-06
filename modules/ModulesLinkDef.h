@@ -37,6 +37,7 @@
 #include "modules/TrackSmearing.h"
 #include "modules/TrackCovariance.h"
 #include "modules/ClusterCounting.h"
+#include "modules/ElossTracker.h"
 #include "modules/ImpactParameterSmearing.h"
 #include "modules/TimeSmearing.h"
 #include "modules/TimeOfFlight.h"
@@ -78,9 +79,6 @@
 #include "modules/ParticleDensity.h"
 #include "modules/TruthVertexFinder.h"
 #include "modules/ExampleModule.h"
-#include "modules/LLPFilter.h"
-#include "modules/CscClusterEfficiency.h"
-#include "modules/CscClusterId.h"
 
 #ifdef __CINT__
 
@@ -100,6 +98,7 @@
 #pragma link C++ class TrackSmearing+;
 #pragma link C++ class TrackCovariance+;
 #pragma link C++ class ClusterCounting+;
+#pragma link C++ class ElossTracker+;
 #pragma link C++ class ImpactParameterSmearing+;
 #pragma link C++ class TimeSmearing+;
 #pragma link C++ class TimeOfFlight+;
@@ -141,8 +140,5 @@
 #pragma link C++ class ParticleDensity+;
 #pragma link C++ class TruthVertexFinder+;
 #pragma link C++ class ExampleModule+;
-#pragma link C++ class LLPFilter+;
-#pragma link C++ class CscClusterEfficiency+;
-#pragma link C++ class CscClusterId+;
 
 #endif
