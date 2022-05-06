@@ -37,6 +37,7 @@ set ExecutionPath {
   TrackMergerPre
   TrackSmearing
   ClusterCounting
+  ElossTracker
   TimeSmearing
   TimeOfFlight
 
@@ -394,6 +395,32 @@ module ClusterCounting ClusterCounting {
 
 }
 
+###################
+# Energy loss
+###################
+
+module ElossTracker ElossTracker {
+
+  add InputArray TrackSmearing/tracks
+  set OutputArray tracks
+
+  set Bz $B
+
+  ## check that these are consistent with DCHCANI/DCHNANO parameters in TrackCovariance module
+  set Rmin $DCHRMIN
+  set Rmax $DCHRMAX
+  set Zmin $DCHZMIN
+  set Zmax $DCHZMAX
+
+  # gas mix option:
+  # 0:  Helium 90% - Isobutane 10%
+  # 1:  Helium 100%
+  # 2:  Argon 50% - Ethane 50%
+  # 3:  Argon 100%
+
+  set GasOption 0
+
+}
 
 ########################################
 #   Time Smearing MIP
@@ -401,6 +428,8 @@ module ClusterCounting ClusterCounting {
 
 module TimeSmearing TimeSmearing {
   set InputArray ClusterCounting/tracks
+  set InputArray ElossTracker/tracks
+
   set OutputArray tracks
 
   # assume constant 30 ps resolution for now
