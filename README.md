@@ -1,10 +1,11 @@
 [![CI](https://github.com/delphes/delphes/actions/workflows/ci.yml/badge.svg)](https://github.com/delphes/delphes/actions/workflows/ci.yml) [![DOI](https://zenodo.org/badge/21390046.svg)](https://zenodo.org/badge/latestdoi/21390046)
 
-//dedx 
-Delphes
+
+Delphes with dEdx
 =======
 
-Delphes is a C++ framework, performing a fast multipurpose detector response simulation.
+
+---------Delphes is a C++ framework, performing a fast multipurpose detector response simulation.
 
 More details can be found on the Delphes website http://cp3.irmp.ucl.ac.be/projects/delphes
 
@@ -174,3 +175,5 @@ or
 ```
    root -l examples/Example1.C'("delphes_output.root")'
 ```
+# Delphes_dEdx
+# Delphes_dEdx

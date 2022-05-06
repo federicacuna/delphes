@@ -170,7 +170,7 @@ ExRootTask *ExRootTask::NewTask(const char *className, const char *taskName)
     message << "can't find class '" << className << "'";
     throw runtime_error(message.str());
   }
-
+  // cout<<"classname "<<className<<" taskname "<<taskName<<endl;
   return NewTask(cl, taskName);
 }
 

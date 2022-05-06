@@ -34,7 +34,6 @@ CompBase *GenParticle::fgCompare = 0;
 CompBase *Photon::fgCompare = CompPT<Photon>::Instance();
 CompBase *Electron::fgCompare = CompPT<Electron>::Instance();
 CompBase *Muon::fgCompare = CompPT<Muon>::Instance();
-
 CompBase *Jet::fgCompare = CompPT<Jet>::Instance();
 CompBase *Track::fgCompare = CompPT<Track>::Instance();
 CompBase *Tower::fgCompare = CompE<Tower>::Instance();
@@ -42,7 +41,6 @@ CompBase *ParticleFlowCandidate::fgCompare = CompE<ParticleFlowCandidate>::Insta
 CompBase *HectorHit::fgCompare = CompE<HectorHit>::Instance();
 CompBase *Vertex::fgCompare = CompSumPT2<Vertex>::Instance();
 CompBase *Candidate::fgCompare = CompMomentumPt<Candidate>::Instance();
-CompBase *CscCluster::fgCompare = CompE<CscCluster>::Instance();
 
 //------------------------------------------------------------------------------
 
@@ -219,7 +217,6 @@ Candidate::Candidate() :
   Momentum(0.0, 0.0, 0.0, 0.0),
   Position(0.0, 0.0, 0.0, 0.0),
   InitialPosition(0.0, 0.0, 0.0, 0.0),
-  DecayPosition(0.0, 0.0, 0.0, 0.0),
   PositionError(0.0, 0.0, 0.0, 0.0),
   Area(0.0, 0.0, 0.0, 0.0),
   TrackCovariance(5),
@@ -232,9 +229,10 @@ Candidate::Candidate() :
   CtgTheta(0), ErrorCtgTheta(0),
   Phi(0), ErrorPhi(0),
   Xd(0), Yd(0), Zd(0),
-  XFirstHit(0), YFirstHit(0), ZFirstHit(0),
   Nclusters(0.0),
   dNdx(0.0),
+  EnergyLoss(0.0),
+  dEdx(0.0),
   TrackResolution(0),
   NCharged(0),
   NNeutrals(0),
@@ -391,7 +389,6 @@ void Candidate::Copy(TObject &obj) const
   object.Momentum = Momentum;
   object.Position = Position;
   object.InitialPosition = InitialPosition;
-  object.DecayPosition = DecayPosition;
   object.PositionError = PositionError;
   object.Area = Area;
   object.L = L;
@@ -413,11 +410,10 @@ void Candidate::Copy(TObject &obj) const
   object.Xd = Xd;
   object.Yd = Yd;
   object.Zd = Zd;
-  object.XFirstHit = XFirstHit;
-  object.YFirstHit = YFirstHit;
-  object.ZFirstHit = ZFirstHit;
   object.Nclusters = Nclusters;
   object.dNdx = dNdx;
+  object.EnergyLoss=EnergyLoss;
+  object.dEdx=dEdx;
   object.TrackResolution = TrackResolution;
   object.NCharged = NCharged;
   object.NNeutrals = NNeutrals;
@@ -530,7 +526,6 @@ void Candidate::Clear(Option_t *option)
   Momentum.SetXYZT(0.0, 0.0, 0.0, 0.0);
   Position.SetXYZT(0.0, 0.0, 0.0, 0.0);
   InitialPosition.SetXYZT(0.0, 0.0, 0.0, 0.0);
-  DecayPosition.SetXYZT(0.0, 0.0, 0.0, 0.0);
   Area.SetXYZT(0.0, 0.0, 0.0, 0.0);
   TrackCovariance.Zero();
   L = 0.0;
@@ -552,11 +547,10 @@ void Candidate::Clear(Option_t *option)
   Xd = 0.0;
   Yd = 0.0;
   Zd = 0.0;
-  XFirstHit = 0.0;
-  YFirstHit = 0.0;
-  ZFirstHit = 0.0;
   Nclusters = 0.0;
   dNdx = 0.0;
+  EnergyLoss=0.0;
+  dEdx=0.0;
   TrackResolution = 0.0;
   NCharged = 0;
   NNeutrals = 0;

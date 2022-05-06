@@ -157,11 +157,6 @@ public:
   Float_t Y; // particle vertex position (y component) | hepevt.vhep[number][1]
   Float_t Z; // particle vertex position (z component) | hepevt.vhep[number][2]
 
-  Float_t decayX;
-  Float_t decayY;
-  Float_t decayZ;
-  Float_t decayT;
-
   static CompBase *fgCompare; //!
   const CompBase *GetCompare() const { return fgCompare; }
 
@@ -462,15 +457,13 @@ public:
   Float_t Yd; // Y coordinate of point of closest approach to vertex
   Float_t Zd; // Z coordinate of point of closest approach to vertex
 
-  Float_t XFirstHit; // X coordinate of point of closest approach to vertex
-  Float_t YFirstHit; // Y coordinate of point of closest approach to vertex
-  Float_t ZFirstHit; // Z coordinate of point of closest approach to vertex
-
   Float_t L; // track path length
   Float_t D0; // track transverse impact parameter
   Float_t DZ; // track longitudinal impact parameter
   Float_t Nclusters; // Number of ionization clusters
   Float_t dNdx; // Number of ionization clusters
+  Float_t EnergyLoss; // Energy Loss in tracker
+  Float_t dEdx; // de/dx in tracker
 
   Float_t ErrorP; // track momentum error
   Float_t ErrorPT; // track transverse momentum error
@@ -573,15 +566,13 @@ public:
   Float_t Yd; // Y coordinate of point of closest approach to vertex
   Float_t Zd; // Z coordinate of point of closest approach to vertex
 
-  Float_t XFirstHit; // X coordinate of point of closest approach to vertex
-  Float_t YFirstHit; // Y coordinate of point of closest approach to vertex
-  Float_t ZFirstHit; // Z coordinate of point of closest approach to vertex
-
   Float_t L; // track path length
   Float_t D0; // track transverse impact parameter
   Float_t DZ; // track longitudinal impact parameter
   Float_t Nclusters; // Number of ionization clusters
   Float_t dNdx; // Number of ionization clusters
+  Float_t EnergyLoss; // Energy loss in tracker
+  Float_t dEdx; // de/dx in tracker
 
   Float_t ErrorP; // track momentum error
   Float_t ErrorPT; // track transverse momentum error
@@ -650,35 +641,6 @@ public:
 
   ClassDef(HectorHit, 1)
 };
-//---------------------------------------------------------------------------
-
-class CscCluster: public SortableObject
-{
-public:
-  Float_t Eta; // eta of LLP
-  Float_t Phi; // phi of LLP
-  Float_t PT; // pt of LLP
-  Float_t Px;// px of LLP
-  Float_t Py;// py of LLP
-  Float_t Pz;// pz of LLP
-  Float_t E; // E of LLP
-  Float_t Ehad; // had energy of LLP
-  Float_t Eem; // em energy of LLP
-  Float_t pid; // LLP pid
-  Float_t T; // LLP decay time-photon travel time
-  Float_t X; // LLP decay x
-  Float_t Y; //  LLP decay y
-  Float_t Z; //  LLP decay z
-  Float_t R; //  LLP decay z
-  Float_t beta; // LLP beta
-  Float_t ctau; //LLP ctau
-
-
-  static CompBase *fgCompare; //!
-  const CompBase *GetCompare() const { return fgCompare; }
-
-  ClassDef(CscCluster, 5)
-};
 
 //---------------------------------------------------------------------------
 
@@ -723,7 +685,7 @@ public:
   Float_t DeltaEta;
   Float_t DeltaPhi;
 
-  TLorentzVector Momentum, Position, InitialPosition, PositionError, DecayPosition, Area;
+  TLorentzVector Momentum, Position, InitialPosition, PositionError, Area;
 
   Float_t L; // path length
   Float_t DZ;
@@ -744,14 +706,12 @@ public:
 
   Float_t Nclusters; // Number of ionization clusters
   Float_t dNdx; // Number of ionization clusters per unit length
+  Float_t EnergyLoss; // Energy loss in tracker
+  Float_t dEdx; // de/dx in tracker
 
   Float_t Xd;
   Float_t Yd;
   Float_t Zd;
-
-  Float_t XFirstHit;
-  Float_t YFirstHit;
-  Float_t ZFirstHit;
 
   // tracking resolution
 

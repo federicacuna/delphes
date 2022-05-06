@@ -130,6 +130,7 @@ void Delphes::Init()
     if(itModules != modules->end())
     {
       task = NewTask(itModules->second, itModules->first);
+      std::cout<<" modules second "<< itModules->second<<" modules first "<<itModules->first<<std::endl;
       if(task)
       {
         task->SetFolder(GetFolder());
