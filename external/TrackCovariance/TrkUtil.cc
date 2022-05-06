@@ -988,8 +988,8 @@ Bool_t TrkUtil::IonEnergyLoss(Double_t &Eloss, Double_t mass, TVectorD Par, Doub
       // sgmEloss = lincoeff(bg, bg_sim, avasgm) * d + lincoeff(bg, bg_sim, avbsgm); // EnergyLossSigma(bg) * TMath::Log(d); //0.35 * d; // * tLen; //sigma
       // muEloss =  EnergyLoss(bg) * d; // Avg.Eloss//
       // sgmEloss = EnergyLossSigma(bg) * d;
-      muEloss = lincoeff(bg, xvaluempv, yvaluempv);// * d;
-      sgmEloss = lincoeff(bg, xvaluesgm, yvaluesgm);// * d;
+      muEloss = lincoeff(bg, xvaluempv, yvaluempv) * d;
+      sgmEloss = lincoeff(bg, xvaluesgm, yvaluesgm)* d;
       // std::cout<<" MPV "<< EnergyLoss(bg) * d<< " "<<lincoeff(bg, xvaluempv, yvaluempv) * d<<std::endl;
       // std::cout<<"sgm "<< EnergyLossSigma(bg) * d<< " "<<lincoeff(bg, xvaluesgm, yvaluesgm) * d<<std::endl;
       Eloss = gRandom->Landau(muEloss, sgmEloss); // Actual Eloss
@@ -1003,7 +1003,7 @@ Bool_t TrkUtil::IonEnergyLoss(Double_t &Eloss, Double_t mass, TVectorD Par, Doub
       //     std::cout<<" "<< R<<" "<<phi<<" "<<zz<<std::endl;
       //   }
       // }
-      for(Int_t j = 0; j < 200/*TMath::Nint(tLen*1e2) */ /*TU2.nmHit()*/; ++j)
+      for(Int_t j = 0; j < /*TMath::Nint(tLen*1e2) */ TU2.nmHit(); ++j)
       {
         tmpEloss = gRandom->Landau(muEloss, sgmEloss);
         elosses.push_back(tmpEloss);
